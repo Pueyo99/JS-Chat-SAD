@@ -18,7 +18,7 @@ public class EditableBufferedReader extends BufferedReader {
     }
 
     public void unsetRaw() throws InterruptedException {
-        final String[] cmd = new String[] { "/bin/sh", "-c", "stty -echo cooked </dev/tty" };
+        final String[] cmd = new String[] { "/bin/sh", "-c", "stty -echo sane </dev/tty" };
         try {
             Runtime.getRuntime().exec(cmd).waitFor();
         } catch (final IOException e) {
@@ -97,7 +97,7 @@ public class EditableBufferedReader extends BufferedReader {
             }else{
                 System.out.print("\u001b[1000D");
                 System.out.print("\u001b[0K");
-                System.out.print(l.insert(i));
+                System.out.print(l.add(i));
                 System.out.print("\u001b[1000D");
                 System.out.print("\u001b[" + l.getIndex() + "C");
                 

@@ -27,21 +27,31 @@ public class Line{
     }
 
     public String delete(){
-        //Creamos nuevo String sin el caracter borrado
-        String str1 = str.substring(0, index-1);
-        String str2 = str.substring(index);
+        String str1;
+        String str2;
+        if(insert){
+            str1 = str.substring(0, index-1);
+            str2 = str.substring(index);
+            index -=1;
+        }else{
+            str1 = str.substring(0,index);
+            str2 = str.substring(index+1);
+        }    
         str = str1 + str2;
-        index -=1;
         return str;
     }
-    public String insert(int i){
-        //Insertamos el carácter donde toque
-        int cursor = 0;
-        cursor = insert==true ? index : index-1;
-        String str1 = str.substring(0, cursor);
-        String str2 = str.substring(cursor+1);
+    public String add(int i){
+        String str1;
+        String str2;
+        if(insert){
+            str1 = str.substring(0, index);
+            str2 = str.substring(index);
+            index +=1;
+        }else{
+            str1 = str.substring(0,index);
+            str2 = str.substring(index+1);
+        }
         str = str1 + (char) i + str2;
-        index +=1;
         return str;
     }
     public String getLine(){
