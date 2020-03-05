@@ -8,6 +8,7 @@ public class Key{
     public static final int FINAL = 5;
     public static final int INICIO = 6;
     public static final int INSERT = 7;
+    public static final int SUPR = 8;
 
     public static final String PRINTLEFT = "\u001b[1D";
     public static final String PRINTRIGHT = "\u001b[1C";

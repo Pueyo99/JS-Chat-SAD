@@ -28,11 +28,11 @@ public class EditableBufferedReader extends BufferedReader {
 
     public int read(){
         try{
-            int i = System.in.read();
+            int i = super.read();
             if(i==27){
-                i = System.in.read();
+                i = super.read();
                 if(i==91){
-                    i =System.in.read();
+                    i =super.read();
                     switch(i){
                         case 72:
                         return Key.INICIO;
@@ -51,10 +51,17 @@ public class EditableBufferedReader extends BufferedReader {
                         return Key.UP;
 
                         case 50:
-                            i = System.in.read();
+                            i = super.read();
                             if(i==126){
                                 return Key.INSERT;  
                             }
+                        break;
+                        case 51:
+                            i=super.read();
+                            if(i==126){
+                                return Key.SUPR;
+                            }
+                            
                     }
                 }
             }
@@ -67,6 +74,7 @@ public class EditableBufferedReader extends BufferedReader {
     
     public String readLine(){
         Line l = new Line();
+        String str = new String();
         int i = 0;
         while(true){
             i = read();
@@ -80,28 +88,25 @@ public class EditableBufferedReader extends BufferedReader {
                 l.moveRight();
             }else if(i==Key.INICIO){
                 l.moveFirst();
-                System.out.print("\u001b[1000D");
             }else if(i==Key.FINAL){
                 l.moveEnd();
-                System.out.print("\u001b[1000D");
-                System.out.print("\u001b["+ l.getIndex() +"C");
             }else if(i==Key.INSERT){
                 l.toogleIns();
-                
+            }else if(i==Key.SUPR){
+                l.toogleBackspace();
+                str = l.delete();
+                l.toogleBackspace();    
+             
             }else if(i==Key.DELETE){
-                System.out.print("\u001b[1000D");
-                System.out.print("\u001b[0K");
-                System.out.print(l.delete());
-                System.out.print("\u001b[1000D");
-                System.out.print("\u001b[" + l.getIndex() + "C");
+                str = l.delete();
             }else{
-                System.out.print("\u001b[1000D");
-                System.out.print("\u001b[0K");
-                System.out.print(l.add(i));
-                System.out.print("\u001b[1000D");
-                System.out.print("\u001b[" + l.getIndex() + "C");
-                
+                str = l.add(i);
             }
+            System.out.print("\u001b[1000D");
+            System.out.print("\u001b[0K");
+            System.out.print(str);
+            System.out.print("\u001b[1000D");
+            System.out.print("\u001b[" + l.getIndex() + "C");
         }
     }
 }
