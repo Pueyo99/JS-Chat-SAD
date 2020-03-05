@@ -81,10 +81,8 @@ public class EditableBufferedReader extends BufferedReader {
             if(i==Key.ENTER){ 
                 return l.getLine();
             }else if(i==Key.LEFT){
-                System.out.print(Key.PRINTLEFT);
                 l.moveLeft();
             }else if(i==Key.RIGHT){
-                System.out.print(Key.PRINTRIGHT);
                 l.moveRight();
             }else if(i==Key.INICIO){
                 l.moveFirst();
@@ -106,7 +104,9 @@ public class EditableBufferedReader extends BufferedReader {
             System.out.print("\u001b[0K");
             System.out.print(str);
             System.out.print("\u001b[1000D");
-            System.out.print("\u001b[" + l.getIndex() + "C");
+            if(l.getIndex()!=0){
+                System.out.print("\u001b[" + l.getIndex() + "C");
+            }
         }
     }
 }

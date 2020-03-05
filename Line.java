@@ -1,22 +1,22 @@
 public class Line{
 
     public int index;
-    public String str;
+    public StringBuilder str;
     public Boolean insert;
     public Boolean backspace;
 
     public Line(){
-        str = new String();
+        str = new StringBuilder();
         index =0;
-        insert = true;
+        insert = false;
         backspace = false;
     }
 
     public void moveRight(){
-        index +=1;
+        index = index < str.length() ? index + 1 : str.length();
     }
     public void moveLeft(){
-        index -=1;
+        index = index > 0 ? index - 1 : 0;
     }
     public void moveEnd(){
         index = str.length();
@@ -32,35 +32,31 @@ public class Line{
     }
 
     public String delete(){
-        String str1;
-        String str2;
-        if(!backspace){
-            str1 = str.substring(0, index-1);
-            str2 = str.substring(index);
-            index -=1;
+        if(index ==0){
+            if(str.length()>0 && backspace){
+                str.deleteCharAt(0);
+            }
         }else{
-            str1 = str.substring(0,index);
-            str2 = str.substring(index+1);
-        }    
-        str = str1 + str2;
-        return str;
+            if(backspace && str.length()>index){
+                str.deleteCharAt(index);
+            }else if(!backspace){
+                str.deleteCharAt(index-1);
+                index -=1;
+            }
+        }   
+        return str.toString();
     }
     public String add(int i){
-        String str1;
-        String str2;
-        if(insert){
-            str1 = str.substring(0, index);
-            str2 = str.substring(index);
+        if(insert && str.length()>index){
+            str.setCharAt(index,(char)i);
         }else{
-            str1 = str.substring(0,index);
-            str2 = str.substring(index+1);
+            str.insert(index,(char)i);
         }
-        str = str1 + (char) i + str2;
         index +=1;
-        return str;
+        return str.toString();
     }
     public String getLine(){
-        return str;
+        return str.toString();
     }
     public int getIndex(){
         return index;
