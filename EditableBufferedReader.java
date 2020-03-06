@@ -40,16 +40,12 @@ public class EditableBufferedReader extends BufferedReader {
                         return Key.FINAL;
                         case 68:
                         return Key.LEFT;
-                       
                         case 67: 
                         return Key.RIGHT;
-                        
                         case 66: 
                         return Key.DOWN;
-                        
                         case 65: 
                         return Key.UP;
-
                         case 50:
                             i = super.read();
                             if(i==126){
@@ -60,8 +56,7 @@ public class EditableBufferedReader extends BufferedReader {
                             i=super.read();
                             if(i==126){
                                 return Key.SUPR;
-                            }
-                            
+                            }                
                     }
                 }
             }
@@ -93,8 +88,7 @@ public class EditableBufferedReader extends BufferedReader {
             }else if(i==Key.SUPR){
                 l.toogleBackspace();
                 str = l.delete();
-                l.toogleBackspace();    
-             
+                l.toogleBackspace();        
             }else if(i==Key.DELETE){
                 str = l.delete();
             }else{
