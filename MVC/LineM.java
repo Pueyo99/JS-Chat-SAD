@@ -41,7 +41,7 @@ public class LineM extends Observable {
         backspace = !backspace;
     }
 
-    public String delete(){
+    public void delete(){
         if(index ==0){
             if(str.length()>0 && backspace){
                 str.deleteCharAt(0);
@@ -56,9 +56,8 @@ public class LineM extends Observable {
         }   
         setChanged();
         notifyObservers();
-        return str.toString();
     }
-    public String add(int i){
+    public void add(int i){
         if(insert && str.length()>index){
             str.setCharAt(index,(char)i);
         }else{
@@ -67,7 +66,6 @@ public class LineM extends Observable {
         index +=1;
         setChanged();
         notifyObservers();
-        return str.toString();
     }
     public String getLine(){
         return str.toString();

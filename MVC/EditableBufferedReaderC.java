@@ -70,7 +70,6 @@ public class EditableBufferedReaderC extends BufferedReader {
     }
     
     public String readLine(){
-        String str = new String();
         int i = 0;
         while(true){
             i = read();
@@ -88,12 +87,12 @@ public class EditableBufferedReaderC extends BufferedReader {
                 l.toogleIns();
             }else if(i==Key.SUPR){
                 l.toogleBackspace();
-                str = l.delete();
+                l.delete();
                 l.toogleBackspace();        
             }else if(i==Key.DELETE){
-                str = l.delete();
+                l.delete();
             }else{
-                str = l.add(i);
+                l.add(i);
             }
         }
     }
