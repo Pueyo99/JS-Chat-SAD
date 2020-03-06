@@ -70,7 +70,6 @@ public class EditableBufferedReaderPC extends BufferedReader {
     }
     
     public String readLine(){
-        String str = new String();
         int i = 0;
         while(true){
             i = read();
