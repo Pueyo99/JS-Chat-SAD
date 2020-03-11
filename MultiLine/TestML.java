@@ -5,7 +5,7 @@ public class TestML {
     private ConsoleML c;
     public TestML(){
         l = new LineML();
-        c = new ConsoleML(189);
+        c = new ConsoleML();
         l.addPropertyChangeListener(c);
     }
     public LineML getLineML(){
@@ -19,6 +19,7 @@ public class TestML {
         String str = null;
         try {
             System.out.print(Key.orderDELETE);
+            System.out.print(Key.orderRESET);
             in.setRaw();
             str = in.readLine();
             in.unsetRaw();

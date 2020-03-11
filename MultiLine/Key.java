@@ -10,7 +10,7 @@ public class Key{
     public static final int INSERT = 7;
     public static final int SUPR = 8;
 
-    public static final String orderRESET = "\u001b[1000D \u001b[1000A";
+    public static final String orderRESET = "\u001b[1000A\u001b[1000D";
     public static final String orderDELETE = "\u001b[2J";
     //public static final String orderUP = "\u001b[1A";
     //public static final String orderDOWN = "\u001b[1B";

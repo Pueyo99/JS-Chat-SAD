@@ -3,13 +3,9 @@ import java.beans.*;
 public class LineML{
 
     public int index;
-
-    public int col;
     public int nCols;
-
-    public int row;
-    public int nRows;
-
+    //col = index%nCols
+    //row = index/nCols
     public StringBuilder str;
     public Boolean insert;
     public Boolean backspace;
@@ -19,10 +15,7 @@ public class LineML{
     public LineML(){
         str = new StringBuilder();
         index = 0;
-        col = 1;
-        nCols = 189;
-        row = 1;
-        nRows = 1;
+        nCols = ConsoleML.getWidth();
         insert = false;
         backspace = false;
         pcs = new PropertyChangeSupport(this);
@@ -41,10 +34,12 @@ public class LineML{
         pcs.firePropertyChange("string",str.toString(),index);
     }
     public void moveUp(){
+        nCols = ConsoleML.getWidth();
         index = index > nCols ? index - nCols : 0;
         pcs.firePropertyChange("string",str.toString(),index);
     }
     public void moveDown(){
+        nCols = ConsoleML.getWidth();
         index = (index+nCols) < str.length() ? index + nCols : str.length(); 
         pcs.firePropertyChange("string",str.toString(),index);
     }
