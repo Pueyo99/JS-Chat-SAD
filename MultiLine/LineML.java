@@ -89,4 +89,7 @@ public class LineML{
         return index;
     }
     
+    public void getPosition(String s){
+        System.out.println(s);
+    }
 }

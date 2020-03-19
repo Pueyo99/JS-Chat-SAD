@@ -19,7 +19,7 @@ public class TestML {
         String str = null;
         try {
             System.out.print(Key.orderDELETE);
-            System.out.print(Key.orderRESET);
+            System.out.print(Key.orderRESET);        
             in.setRaw();
             str = in.readLine();
             in.unsetRaw();

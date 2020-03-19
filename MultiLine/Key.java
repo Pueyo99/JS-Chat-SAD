@@ -9,6 +9,7 @@ public class Key{
     public static final int INICIO = 6;
     public static final int INSERT = 7;
     public static final int SUPR = 8;
+    public static final int MOUSE = 9;
 
     public static final String orderRESET = "\u001b[1000A\u001b[1000D";
     public static final String orderDELETE = "\u001b[2J";

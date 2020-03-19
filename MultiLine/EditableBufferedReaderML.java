@@ -73,7 +73,11 @@ public class EditableBufferedReaderML extends BufferedReader {
                             i=super.read();
                             if(i==126){
                                 return Key.SUPR;
-                            }                
+                            }
+                        break;
+                        case 77:
+                        return Key.MOUSE;
+
                     }
                 }
             }
@@ -87,11 +91,6 @@ public class EditableBufferedReaderML extends BufferedReader {
     public String readLine(){
         int i = 0;
         while(true){
-            /*try{
-                getSize();
-            }catch(Exception e){
-                e.printStackTrace();
-            } */
             i = read();
             if(i==Key.ENTER){
                 return l.getLine();
@@ -115,6 +114,17 @@ public class EditableBufferedReaderML extends BufferedReader {
                 l.toogleBackspace();        
             }else if(i==Key.DELETE){
                 l.delete();
+            }else if(i==Key.MOUSE){
+                try{
+                    char cb = (char) super.read();
+                    char cx = (char) super.read();
+                    char cy = (char) super.read();
+                    String s = "";
+                    s = s + cb + cx + cy;
+                    l.getPosition(s);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }else{
                 l.add(i);
             }
