@@ -35,18 +35,22 @@ public class MySocket{
         try {
             s = br.readLine();
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         }
         return s;
     }
 
     public void writeLine(String line) {
-        pw.println(line);
-        pw.flush();
+        if(line!=null){
+            pw.println(line);
+            pw.flush();
+        }
     }
 
     public void close(){
         try{
+            br.close();
+            pw.close();
             s.close();
         }catch(Exception e){
             e.printStackTrace();

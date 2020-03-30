@@ -49,9 +49,7 @@ public static void main(String[] args){
     new Thread(){
         public void run(){
             try{
-                while(true){
                     ec.threadInput(sc);
-                }
             }catch(Exception e ){
                 e.printStackTrace();
             }
@@ -60,9 +58,7 @@ public static void main(String[] args){
 
     new Thread(){
         public void run(){
-            while(true){
-                ec.threadOutput(sc);
-            }
+            ec.threadOutput(sc);          
         }
     }.start();
 
