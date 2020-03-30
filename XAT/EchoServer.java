@@ -26,6 +26,7 @@ public class EchoServer {
                             }
                         }  
                     }
+                    m.remove(nick);
                     s.close();
                 }catch(Exception e){
                     e.printStackTrace();
