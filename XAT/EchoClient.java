@@ -58,7 +58,9 @@ public static void main(String[] args){
 
     new Thread(){
         public void run(){
-            ec.threadOutput(sc);          
+            while(true){
+                ec.threadOutput(sc); 
+            }         
         }
     }.start();
 

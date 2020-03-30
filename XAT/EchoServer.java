@@ -1,9 +1,10 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class EchoServer {
     public static void main(String[] args) {
-        Map<String, MySocket> m = new HashMap<String,MySocket>();
+        Map<String, MySocket> m = new ConcurrentHashMap<String,MySocket>();
         MyServerSocket ss = new MyServerSocket(40000);
         
         while(true){
@@ -26,6 +27,7 @@ public class EchoServer {
                             }
                         }  
                     }
+                    System.out.println("\u001b[35mConexión cerrada: \u001b[0m"+nick);
                     m.remove(nick);
                     s.close();
                 }catch(Exception e){
