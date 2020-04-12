@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>XAT</title>
+        <link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="Exec.js"></script>
+    </head>
+    <body>
+        <div class="bg2">
+            <div class="group2">
+                <h1><label for="message" id="user">User</label></h1><br>
+                <input class="messageInput" type="text"  id="message" placeholder="Introduzca su mensaje">
+                <button class="sendButton" id="send"><span>Enviar</span></button><br>
+                <h2>Mensajes recibidos: </h2>
+                <textarea class="messageOutput" id="received" cols="100" rows="10" readonly></textarea><br>
+                <button class="closeButton" id="close">Cerrar Xat</button>
+            </div>
+        </div>
+        <script>
+        listenEnter("message","send");
+        start();
+        </script>
+    </body>
+</html>

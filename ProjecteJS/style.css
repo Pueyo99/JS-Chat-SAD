@@ -1,0 +1,207 @@
+body, html{
+  height: 100%;
+  margin: 0;
+}
+.bg1 {
+  background-image: url("Background.png");
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.bg2 {
+  background-image: url("Background3.jpg");
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.group{
+  position: absolute;
+  left: 0;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+}
+.group2{
+  position: absolute;
+  left: 0;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+}
+
+.box-m{
+    background-color: gold;
+    color: black;
+}
+
+.loginButton {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: azure;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    padding: 15px;
+    width: 25%;
+    margin-left: 37.5%;
+    margin-right: 37.5%;
+    transition: all 0.5s;
+    cursor: pointer;
+    justify-content: center;
+  }
+  
+  .loginButton span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .loginButton span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .loginButton:hover span {
+    padding-right: 25px;
+  }
+  
+  .loginButton:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  .sendButton {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: azure;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 15px;
+    padding: 15px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    justify-content: center;
+  }
+  
+  .sendButton span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .sendButton span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .sendButton:hover span {
+    padding-right: 25px;
+  }
+  
+  .sendButton:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  .closeButton {
+    border-radius: 6px;
+    background-color: black;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    width: 90px;
+    height: 35px;
+    margin-left: 37.5%;
+    margin-right: 37.5%;
+    cursor: pointer;
+    justify-content: center;
+  }
+
+.loginInput {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+	margin: 0 auto;
+  padding: 1.5rem 2rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 21%;
+  border-bottom: 0.3rem solid transparent;
+}
+.messageInput {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+	margin: 0 auto;
+  padding: 1.5rem 2rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 280px;
+  border-bottom: 0.3rem solid transparent;
+  outline-color: black;
+}
+.messageOutput {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 25px;
+  letter-spacing: -2.2px;
+  word-spacing: -3px;
+  font-style: normal;
+  font-variant: small-caps;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border-width: 2px;
+  border-color: black;
+  height: 280px;
+  width: 70%;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+h1 {  
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 75px;
+  letter-spacing: -2.2px;
+  word-spacing: -3px;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: normal;
+  font-variant: small-caps;
+  margin-bottom: 10px;
+  text-align: center;
+}
+h2 {  
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 30px;
+  letter-spacing: -2.2px;
+  word-spacing: -3px;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: normal;
+  font-variant: small-caps;
+  text-align: center;
+}
+
+textarea {
+  resize: none;
+  outline: none;
+  white-space: pre-wrap;
+  box-shadow:0px 0px 8px 8px rgba(0,0,0,0.2);
+}
