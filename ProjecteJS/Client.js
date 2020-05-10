@@ -1,15 +1,5 @@
 var W3CWebSocket = require('websocket').w3cwebsocket;
 
-function listenEnter(input,button){
-    var input = document.getElementById(input);
-    input.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          document.getElementById(button).click();
-        }
-    });
-}
-
 function login(){
     username = document.getElementById("nick").value;
     if(username.length!=0){
@@ -66,6 +56,16 @@ function start(){
         }
     };
 
+    }
+
+    function listenEnter(input,button){
+        var input = document.getElementById(input);
+        input.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+              event.preventDefault();
+              document.getElementById(button).click();
+            }
+        });
     }
 
     //Variables pel correcte funcionament de Browserify
