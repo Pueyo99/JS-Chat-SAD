@@ -1,3 +1,5 @@
+package P1.MultiLine;
+
 import java.io.InputStreamReader;
 
 public class TestML {

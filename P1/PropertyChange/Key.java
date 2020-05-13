@@ -1,4 +1,4 @@
-package P1;
+package P1.PropertyChange;
 
 public class Key {
     public static final int UP = 1;

@@ -1,4 +1,5 @@
-import java.util.HashMap;
+package XAT;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

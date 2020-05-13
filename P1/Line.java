@@ -1,4 +1,6 @@
-public class Line{
+package P1;
+
+public class Line {
 
     public int index;
     public StringBuilder str;

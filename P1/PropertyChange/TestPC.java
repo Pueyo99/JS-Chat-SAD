@@ -1,3 +1,5 @@
+package P1.PropertyChange;
+
 import java.io.InputStreamReader;
 
 public class TestPC {

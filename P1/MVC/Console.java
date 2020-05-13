@@ -1,3 +1,5 @@
+package P1.MVC;
+
 import java.util.Observer;
 import java.util.Observable;
 

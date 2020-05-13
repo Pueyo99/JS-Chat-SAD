@@ -1,3 +1,5 @@
+package P1.PropertyChange;
+
 import java.beans.*;
 
 public class LinePCS{

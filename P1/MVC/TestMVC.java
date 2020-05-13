@@ -1,3 +1,5 @@
+package P1.MVC;
+
 import java.io.InputStreamReader;
 
 public class TestMVC {

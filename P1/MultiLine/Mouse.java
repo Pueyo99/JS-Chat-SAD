@@ -1,3 +1,5 @@
+package P1.MultiLine;
+
 import java.io.*;
 import java.awt.*;
 
@@ -8,7 +10,8 @@ public class Mouse{
     }
     public static void setTracking(){
         try{
-            final String[] cmd = {"/bin/sh", "-c", "echo -e "+"\e[?9h"+" </dev/tty"};
+            //final String[] cmd = {"/bin/sh", "-c", "echo -e "+"\e[?9h" + " </dev/tty"};
+            final String[] cmd = {"/bin/sh", "-c", "echo -e </dev/tty"};
             Process child = Runtime.getRuntime().exec(cmd);
         }catch(Exception e){
             e.printStackTrace();
