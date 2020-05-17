@@ -8,6 +8,8 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -20,11 +22,13 @@ public class NIOServer {
         try {
 
             selector = Selector.open();
+            HashSet<String> users = new HashSet<>();
 
             ServerSocketChannel socket = ServerSocketChannel.open();
             ServerSocket serverSocket = socket.socket();
 
             serverSocket.bind(new InetSocketAddress("localhost", 8089));
+
             socket.configureBlocking(false);
             int ops = socket.validOps();
             socket.register(selector, ops, null);
@@ -61,8 +65,22 @@ public class NIOServer {
 
         SocketChannel client = mySocket.accept();
         client.configureBlocking(false);
-        client.register(selector, SelectionKey.OP_READ);
+        SelectionKey clientKey = client.register(selector, SelectionKey.OP_READ);
+
+        ByteBuffer bufferNick = ByteBuffer.allocate(1024);
+        client.read(bufferNick);
+        String nick = new String(bufferNick.array()).trim();
+
+        //Asegura conger el nick correctamente
+        while(!(nick.length() > 0)){
+            client.read(bufferNick);
+            nick = new String(bufferNick.array()).trim();
+        } 
+
+        clientKey.attach(nick);
+        System.out.println("Nuevo cliente: " + clientKey.attachment());
     }
+
 
     private static void handleRead(SelectionKey key)
             throws IOException {
@@ -70,14 +88,25 @@ public class NIOServer {
         System.out.println("Reading...");
         
         SocketChannel client = (SocketChannel) key.channel();
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
 
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
         client.read(buffer);
+        buffer.flip();
         String data = new String(buffer.array()).trim();
 
         if (data.length() > 0) {
 
-            System.out.println("Received message: " + data);
+            System.out.println("Message from " + key.attachment() + ": " + data);
+
+            //Reenviamos el mensaje al resto de clientes
+            for(SelectionKey sk: selector.keys()){
+            
+                if((sk.attachment() != key.attachment()) & (sk.attachment() != null)){
+                    SocketChannel c = (SocketChannel) sk.channel();
+                    c.write(buffer);
+                    System.out.println("Mensaje enviado a: " + sk.attachment());
+                }
+            }
 
             if (data.equalsIgnoreCase("exit")) {
                 
@@ -85,5 +114,6 @@ public class NIOServer {
                 System.out.println("Connection closed...");
             }
         }
+        
     }
 }
