@@ -17,6 +17,8 @@ import java.util.Scanner;
 public class GUIClient {
 
     JFrame frame;
+    GridLayout gl = new GridLayout(1,2);
+
     JPanel userList;
     private JTextArea messages;
 
@@ -39,7 +41,7 @@ public class GUIClient {
 
 
         //Output JPanel and JTextArea inside JScrollPane.
-        JPanel output = new JPanel(new GridLayout(1,1));
+        JPanel output = new JPanel(gl);
         
 
         messages = new JTextArea(20, 30);
@@ -49,7 +51,7 @@ public class GUIClient {
         output.add(new JScrollPane(messages));
 
         //Input Jpanel and JTextField + JButton.
-        JPanel input = new JPanel();
+        JPanel input = new JPanel(new FlowLayout());
         JTextField text = new JTextField(65);
         JButton send = new JButton("Send");
 
@@ -100,7 +102,7 @@ public class GUIClient {
         input.add(exit);
 
         //User List
-        userList = new JPanel(new GridLayout(1,2));
+        userList = new JPanel(gl);
 
         Dimension d = list.getPreferredScrollableViewportSize();
         double w = d.getWidth() + 5;
@@ -150,12 +152,8 @@ public class GUIClient {
                             listModel.addElement(users[i]);
                         }
 
-                        Dimension d = list.getPreferredScrollableViewportSize();
-                        double w = d.getWidth() + 5;
-                        double h = d.getHeight() + 5;
-                        listScrollPane.setMinimumSize(new Dimension((int) w,(int) h));
-                        System.out.println(w + ": " + h);
-                        SwingUtilities.updateComponentTreeUI(frame);
+                        //Update list Size
+                        updateSize();
 
                     }else{
                         //System.out.println("Mensaje recibido: " + msg);
@@ -167,6 +165,14 @@ public class GUIClient {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void updateSize(){
+        Dimension d = list.getPreferredScrollableViewportSize();
+        double w = d.getWidth() + 5;
+        double h = d.getHeight() + 5;
+        listScrollPane.setMinimumSize(new Dimension((int) w,(int) h));
+        SwingUtilities.updateComponentTreeUI(frame);
     }
 
 
