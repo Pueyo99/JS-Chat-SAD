@@ -1,12 +1,10 @@
 package XAT_GRAFIC;
 
+
 //GUI Imports
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.event.*;
-
-import jdk.nashorn.internal.ir.CatchNode;
 
 //Other Imports
 import java.io.IOException;
@@ -17,12 +15,14 @@ import java.nio.channels.SocketChannel;
 import java.util.Scanner;
 
 public class GUIClient {
-    
-    private JTextArea messages;
-    private DefaultListModel<String> listModel = new DefaultListModel<>();
 
-    public GUIClient(){
-    }
+    JFrame frame;
+    JPanel userList;
+    private JTextArea messages;
+
+    private DefaultListModel<String> listModel = new DefaultListModel<>();
+    private JList list = new JList<>(listModel);
+    private JScrollPane listScrollPane = new JScrollPane(list);
 
     private void createAndShowGUI(String user, SocketChannel socket){
 
@@ -34,19 +34,23 @@ public class GUIClient {
         JFrame.setDefaultLookAndFeelDecorated(true);
 
         //Create window.
-        JFrame frame = new JFrame(user);
+        frame = new JFrame(user);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
         //Output JPanel and JTextArea inside JScrollPane.
         JPanel output = new JPanel(new GridLayout(1,1));
+        
+
         messages = new JTextArea(20, 30);
+        messages.setBackground(new Color(192,192,192));
         messages.setEditable(false);
 
         output.add(new JScrollPane(messages));
 
         //Input Jpanel and JTextField + JButton.
         JPanel input = new JPanel();
-        JTextField text = new JTextField(25);
+        JTextField text = new JTextField(65);
         JButton send = new JButton("Send");
 
         send.addActionListener(new ActionListener(){
@@ -87,16 +91,28 @@ public class GUIClient {
             }
         });
 
+        input.setBackground(Color.black);
+        send.setBackground(Color.green);
+        exit.setBackground(Color.red);
+
         input.add(text);
         input.add(send);
         input.add(exit);
 
         //User List
-        JPanel userList = new JPanel(new GridLayout(1,2));
+        userList = new JPanel(new GridLayout(1,2));
 
-        JList list = new JList<>(listModel);
+        Dimension d = list.getPreferredScrollableViewportSize();
+        double w = d.getWidth() + 5;
+        double h = d.getHeight() + 5;
+        listScrollPane.setMinimumSize(new Dimension((int) w,(int) h));
 
-        JScrollPane listScrollPane = new JScrollPane(list);
+        list.setBackground(Color.black);
+        list.setForeground(Color.white);
+
+        list.setVisibleRowCount(-1);
+        
+        
 
         userList.add(listScrollPane, BorderLayout.CENTER);
 
@@ -104,10 +120,11 @@ public class GUIClient {
         frame.add(output, BorderLayout.CENTER);
         frame.add(input, BorderLayout.PAGE_END);
         frame.add(userList, BorderLayout.EAST);
-
+        
+        //Set enter to activate send button
+        frame.getRootPane().setDefaultButton(send);
        
         //Display the window.
-        
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -133,8 +150,15 @@ public class GUIClient {
                             listModel.addElement(users[i]);
                         }
 
+                        Dimension d = list.getPreferredScrollableViewportSize();
+                        double w = d.getWidth() + 5;
+                        double h = d.getHeight() + 5;
+                        listScrollPane.setMinimumSize(new Dimension((int) w,(int) h));
+                        System.out.println(w + ": " + h);
+                        SwingUtilities.updateComponentTreeUI(frame);
+
                     }else{
-                        System.out.println("Mensaje recibido: " + msg);
+                        //System.out.println("Mensaje recibido: " + msg);
                         messages.append(msg + "\n");
                     }
                 }
